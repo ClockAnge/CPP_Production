@@ -59,10 +59,13 @@ double Calculator::factor() {
         case Token::Type::LeftParenthesis: {
             double result = expr();
             t = getNextToken();
+            if (t.type != Token::Type::RightParenthesis){
+                throw runtime_error("propusk");
+            }
             return result;
         }
         default:
-            return expr();
+            throw runtime_error("propusk");
     }
 }
 

@@ -62,6 +62,21 @@ TEST(CalculatorTest, ComplexExpression) {
     EXPECT_EQ(result, -34.75);
 }
 
+TEST(CalculatorTest, BracketLeft) {
+    Calculator calculator("0.5 * (123 - 1 + 0 ");
+    EXPECT_THROW(calculator.calculate(), std::exception);
+}
+
+TEST(CalculatorTest, BracketRight) {
+    Calculator calculator("0.5 * ) 123 - 1 + 0");
+    EXPECT_THROW(calculator.calculate(), std::exception);
+}
+
+
+TEST(CalculatorTest, Znak) {
+    Calculator calculator("0.5 * + 123 -- 1");
+    EXPECT_THROW(calculator.calculate(), std::exception);
+}
 
 int main(int argc, const char * argv[]) {
     ::testing::InitGoogleTest(&argc, (char**)argv);
