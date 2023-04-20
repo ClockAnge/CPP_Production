@@ -10,8 +10,10 @@ def test_calculator():
 
     test_err = [
         ")",
+        "(",
+        "1-",
+        "))",
         "("
-        
     ]
 
     for test_case in test_cases:
@@ -42,8 +44,7 @@ def test_calculator():
         
         stdout, stderr = proc.communicate(test_case)
     
-        assert stderr.strip() == '''terminate called after throwing an instance of 'std::runtime_error'
-  what():  propusk'''
+        assert stderr.strip() == '''libc++abi: terminating with uncaught exception of type std::runtime_error: propusk'''
         
     print('All complete')
 

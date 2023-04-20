@@ -72,10 +72,19 @@ TEST(CalculatorTest, BracketRight) {
     EXPECT_THROW(calculator.calculate(), std::exception);
 }
 
-
 TEST(CalculatorTest, Znak) {
     Calculator calculator("0.5 * + 123 -- 1");
     EXPECT_THROW(calculator.calculate(), std::exception);
+}
+
+TEST(CalculatorExceptionTest, MissingRightParenthesis) {
+    Calculator calculator("3 * (4 + 2");
+    EXPECT_THROW(calculator.calculate(), std::runtime_error);
+}
+
+TEST(CalculatorExceptionTest, InvalidExpression) {
+    Calculator calculator("2 + * 3");
+    EXPECT_THROW(calculator.calculate(), std::runtime_error);
 }
 
 int main(int argc, const char * argv[]) {
